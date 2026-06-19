@@ -1,0 +1,6 @@
+{
+  "name": "FinTegrity",
+  "description": "Premium interactive frontend prototype of FinTegrity – an AI-driven financial and loan management system featuring heuristic risk rating scores, amortization schedules, monthly EMIs ledger records, and simulation widgets.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
