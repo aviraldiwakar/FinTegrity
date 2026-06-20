@@ -45,7 +45,7 @@ public class LoanController {
         }
 
         // Call our Python FastAPI AI endpoint for prediction (/predict)
-        String aiServiceUrl = "http://localhost:8000/predict";
+        String aiServiceUrl = "https://fintegrity-ml.onrender.com/predict";
         Map<String, Object> requestPayload = new HashMap<>();
         requestPayload.put("cibil_score", customer.getCibilScore());
         requestPayload.put("monthly_income", customer.getMonthlyIncome());
