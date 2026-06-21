@@ -34,20 +34,20 @@ export default function App() {
 
   // --- SANDBOX DATABASE STATE ---
   const [customers, setCustomers] = useState<Customer[]>([
-    { id: 1, firstName: "Aviral", lastName: "Jain", email: "aviral@enterprise.com", cibilScore: 780, monthlyIncome: 85000 },
-    { id: 2, firstName: "Ananya", lastName: "Jaiswal", email: "ananya@creditops.net", cibilScore: 610, monthlyIncome: 42000 },
-    { id: 3, firstName: "Raksha", lastName: "Mehta", email: "raksha@fintech.org", cibilScore: 740, monthlyIncome: 25000 }
+    { id: 1, firstName: "Raksha", lastName: "Jain", email: "aviral@enterprise.com", cibilScore: 780, monthlyIncome: 85000 },
+    { id: 2, firstName: "Aniket", lastName: "Sharma", email: "ananya@creditops.net", cibilScore: 610, monthlyIncome: 42000 },
+    { id: 3, firstName: "Tulsidas", lastName: "Khan", email: "raksha@fintech.org", cibilScore: 740, monthlyIncome: 25000 }
   ]);
 
   const [loans, setLoans] = useState<Loan[]>([
-    { id: 101, customerId: 1, customerName: "Aviral Jain", loanAmount: 500000, emiAmount: 15277.78, tenureMonths: 36, loanStatus: 'APPROVED' }
+    { id: 101, customerId: 1, customerName: "Raksha Jain", loanAmount: 500000, emiAmount: 15277.78, tenureMonths: 36, loanStatus: 'APPROVED' }
   ]);
 
   const [transactions, setTransactions] = useState<Transaction[]>([
-    { id: 201, loanId: 101, customerName: "Aviral Jain", amount: 15277.78, dueDate: "2026-07-19", paymentDate: null, status: 'PENDING' },
-    { id: 202, loanId: 101, customerName: "Aviral Jain", amount: 15277.78, dueDate: "2026-08-19", paymentDate: null, status: 'PENDING' },
+    { id: 201, loanId: 101, customerName: "Raksha Jain", amount: 15277.78, dueDate: "2026-07-19", paymentDate: null, status: 'PENDING' },
+    { id: 202, loanId: 101, customerName: "Raksha Jain", amount: 15277.78, dueDate: "2026-08-19", paymentDate: null, status: 'PENDING' },
     // Past due to demonstrate initial late flagging/re-risk matching
-    { id: 203, loanId: 101, customerName: "Aviral Jain", amount: 15277.78, dueDate: "2026-05-15", paymentDate: null, status: 'PENDING' }
+    { id: 203, loanId: 101, customerName: "Raksha Jain", amount: 15277.78, dueDate: "2026-05-15", paymentDate: null, status: 'PENDING' }
   ]);
 
   const [logs, setLogs] = useState<LogMessage[]>([
