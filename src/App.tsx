@@ -12,8 +12,8 @@ import EmiLedgerView from './components/EmiLedgerView';
 import AuditConsole from './components/AuditConsole';
 
 import { 
-  Menu, X, Activity, Database, Compass, CheckCircle2, Shield, 
-  Users, CreditCard, Receipt, Terminal, Sparkles, Check, Info, Bell, AlertCircle
+  Menu, X, Database, Compass, CheckCircle2, Shield,
+  Users, CreditCard, Receipt, Terminal, Info, AlertCircle
 } from 'lucide-react';
 
 interface Toast {
@@ -34,9 +34,9 @@ export default function App() {
 
   // --- SANDBOX DATABASE STATE ---
   const [customers, setCustomers] = useState<Customer[]>([
-    { id: 1, firstName: "Raksha", lastName: "Jain", email: "aviral@enterprise.com", cibilScore: 780, monthlyIncome: 85000 },
-    { id: 2, firstName: "Aniket", lastName: "Sharma", email: "ananya@creditops.net", cibilScore: 610, monthlyIncome: 42000 },
-    { id: 3, firstName: "Tulsidas", lastName: "Khan", email: "raksha@fintech.org", cibilScore: 740, monthlyIncome: 25000 }
+    { id: 1, firstName: "Raksha", lastName: "Jain", email: "raksha@enterprise.com", cibilScore: 780, monthlyIncome: 85000 },
+    { id: 2, firstName: "Aniket", lastName: "Sharma", email: "aniket@creditops.net", cibilScore: 610, monthlyIncome: 42000 },
+    { id: 3, firstName: "Tulsidas", lastName: "Khan", email: "tulsi@fintech.org", cibilScore: 740, monthlyIncome: 25000 }
   ]);
 
   const [loans, setLoans] = useState<Loan[]>([
