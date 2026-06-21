@@ -6,8 +6,8 @@
 import React, { useState, useEffect } from 'react';
 import { Customer, Loan } from '../types';
 import { 
-  CreditCard, Sparkles, AlertCircle, CheckCircle2, XCircle, ChevronRight, 
-  RefreshCw, DollarSign, Calendar, TrendingUp, Info, User, HelpCircle, ArrowRight
+  CreditCard, Sparkles, CheckCircle2, XCircle, ChevronRight,
+  RefreshCw, TrendingUp, Info, ArrowRight, Search
 } from 'lucide-react';
 
 interface LoanOriginationViewProps {
@@ -21,6 +21,14 @@ export default function LoanOriginationView({ customers, loans, onOriginateLoan 
   const [selectedCustomerId, setSelectedCustomerId] = useState(customers[0]?.id || 1);
   const [loanAmount, setLoanAmount] = useState(250000);
   const [tenureMonths, setTenureMonths] = useState(12);
+
+  // Search filter state
+  const [searchTerm, setSearchTerm] = useState('');
+  const filteredCustomers = customers.filter(customer => {
+    const fullName = `${customer.firstName} ${customer.lastName}`.toLowerCase();
+    const searchLower = searchTerm.toLowerCase();
+    return fullName.includes(searchLower) || customer.email.toLowerCase().includes(searchLower);
+  });
 
   // AI Evaluation execution states
   const [evaluationStage, setEvaluationStage] = useState<'IDLE' | 'ANALYZING' | 'DONE'>('IDLE');
@@ -57,7 +65,7 @@ export default function LoanOriginationView({ customers, loans, onOriginateLoan 
     let interval: any;
     if (evaluationStage === 'ANALYZING') {
       interval = setInterval(() => {
-        setFakeMilestoneIndex(prev => {
+        setFakeMilestoneIndex((prev: number) => {
           if (prev >= milestones.length - 1) {
             clearInterval(interval);
             // Complete analysis
@@ -147,10 +155,23 @@ export default function LoanOriginationView({ customers, loans, onOriginateLoan 
             </h3>
 
             <form onSubmit={handleTriggerEvaluation} className="space-y-5">
-              
+
               {/* Select Active Customer */}
               <div>
-                <label className="block text-[11px] font-bold text-slate-600 mb-1" id="org-lbl-customer">Select Target Borrower Profile</label>
+                <label className="block text-[11px] font-bold text-slate-600 mb-2" id="org-lbl-customer">Select Target Borrower Profile</label>
+
+                {/* Real-time Search Box */}
+                <div className="relative mb-3">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 h-4 w-4" />
+                  <input
+                      type="text"
+                      placeholder="Search by name or email..."
+                      className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-500 bg-white"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
+
                 <select
                   value={selectedCustomerId}
                   onChange={(e) => {
@@ -161,7 +182,7 @@ export default function LoanOriginationView({ customers, loans, onOriginateLoan 
                   className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500 font-medium cursor-pointer"
                   id="originate-select-customer"
                 >
-                  {customers.map(c => (
+                  {filteredCustomers.map(c => (
                     <option key={c.id} value={c.id}>
                       {c.firstName} {c.lastName} (CIBIL: {c.cibilScore}, Income: ₹{c.monthlyIncome.toLocaleString('en-IN')}/mo)
                     </option>
